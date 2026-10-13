@@ -73,8 +73,16 @@
 <script>
 function handleSubmit(e) {
   e.preventDefault();
+  var phone = document.getElementById('phone').value.trim();
+  var marketing = document.getElementById('marketing').checked ? 'yes' : 'no';
+  var transactional = document.getElementById('transactional').checked ? 'yes' : 'no';
+  var msg = 'Hi Golden Hour! I want to sign up for text updates. My number: ' + phone +
+            ' (Offers: ' + marketing + ', Account updates: ' + transactional + ')';
   document.getElementById('optin-form').style.display = 'none';
-  document.getElementById('thanks').style.display = 'block';
+  var thanks = document.getElementById('thanks');
+  thanks.style.display = 'block';
+  thanks.innerHTML = '<h2>Almost done! 📲</h2><p>Your messaging app is opening — hit <strong>send</strong> to complete your signup.</p>';
+  window.location.href = 'sms:+19453716930?&body=' + encodeURIComponent(msg);
   return false;
 }
 </script>
